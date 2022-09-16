@@ -1,11 +1,27 @@
 <?php
+// namespace Demo;
 class Calculator
 {
    var $numberA , $numberB ; //su dung var de khai bao cac thuoc tinh(default)
    // public $numberB=2;
 
+   var $numberC;
+
+   private $username='nhanchidanh', $password='123456', $math;
+   
    //khai bao hang so
    const _MSG_CONTENT = 'Ket qua: {value}';
+
+   public function __construct($config = [])
+   {
+      echo 'Ham khoi tao <br>';
+      $this->numberC = 30;
+      $this->math = new Math();
+
+      echo '<pre>';
+      print_r($config);
+      echo '<pre>';
+   }
 
    //phuong thuc gan gia tri cho numberA thuoc tinh
    public function setNumberA($value) {
@@ -70,5 +86,50 @@ class Calculator
 
    public function demoThis() {
       return $this;
+   }
+
+   public function showMsg() {
+      // return 'Demo Msg';
+      return __CLASS__;
+   }
+
+   public function getUsername(){
+      // return $this->username;
+      $this->showinfo('username', $this->username);
+   }
+
+   public function getPassword() {
+      // return $this->password;
+      $this->showinfo('password', $this->password);
+   }
+
+   public function setUsername($value) {
+      return $this->username = $value;
+   }
+
+   public function setPassword($value) {
+      return $this->password = $value;
+   }
+
+   private function showinfo($type, $value){
+      if($type == 'username') {
+         echo 'Username: '.$value;
+      }elseif ($type == 'password') {
+         echo 'Password: '. $value;
+      }else {
+         echo 'Khong hop le';
+      }
+   }
+
+   public function sqrt($number) {
+      if(is_float($number)) {
+         return $this->math->sqrt($number);
+      }
+      return 0;
+   }
+
+   public function __destruct()
+   {
+      echo "Ham huy";
    }
 }
